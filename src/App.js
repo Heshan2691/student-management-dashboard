@@ -9,7 +9,6 @@ function App() {
     <div className="App">
       <Navbar />
       <div className="flex">
-        <Sidebar />
         <Dashboard />
       </div>
     </div>

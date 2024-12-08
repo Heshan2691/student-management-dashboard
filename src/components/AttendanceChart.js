@@ -1,56 +1,59 @@
 import React from "react";
+import { Bar } from "react-chartjs-2";
 import {
   Chart as ChartJS,
+  BarElement,
   CategoryScale,
   LinearScale,
-  PointElement,
-  LineElement,
-  Title,
   Tooltip,
   Legend,
 } from "chart.js";
-import { Line } from "react-chartjs-2";
 
-// Register required components
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend
-);
+ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
 
 const AttendanceChart = () => {
   const data = {
-    labels: ["January", "February", "March", "April", "May", "June"],
+    labels: ["Mon", "Tue", "Wed", "Thu", "Fri"],
     datasets: [
       {
-        label: "Attendance %",
-        data: [90, 85, 88, 92, 87, 91],
-        borderColor: "rgba(75,192,192,1)",
-        backgroundColor: "rgba(75,192,192,0.2)",
-        borderWidth: 2,
-        tension: 0.4,
+        label: "Total Present",
+        data: [80, 85, 90, 95, 80],
+        backgroundColor: "#4CAF50",
+      },
+      {
+        label: "Total Absent",
+        data: [20, 15, 10, 5, 20],
+        backgroundColor: "#F44336",
       },
     ],
   };
 
   const options = {
-    responsive: true,
     plugins: {
       legend: {
         position: "top",
       },
-      title: {
-        display: true,
-        text: "Attendance Trends",
+    },
+    scales: {
+      x: {
+        grid: {
+          display: false,
+        },
+      },
+      y: {
+        ticks: {
+          beginAtZero: true,
+        },
       },
     },
   };
 
-  return <Line data={data} options={options} />;
+  return (
+    <div className="bg-white p-6 rounded-lg shadow-md">
+      <h2 className="text-xl font-semibold mb-4">Attendance</h2>
+      <Bar data={data} options={options} />
+    </div>
+  );
 };
 
 export default AttendanceChart;
