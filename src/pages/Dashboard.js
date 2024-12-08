@@ -49,31 +49,45 @@ const Dashboard = () => {
 
   return (
     <div className="flex">
+      {/* Sidebar */}
       <Sidebar />
 
-      <div className="flex-grow p-6 bg-gray-50">
-        <h1 className="text-2xl font-bold mb-4">Dashboard</h1>
+      {/* Main Content */}
+      <div className="flex flex-grow gap-6 p-6 bg-gray-50">
+        {/* Left Section: Cards and Charts */}
+        <div className="flex-1 flex flex-col gap-6">
+          {/* Cards */}
+          <div className="bg-white p-4 rounded-lg shadow">
+            <CardsContainer />
+          </div>
 
-        <CardsContainer />
+          {/* Charts */}
+          <div className="bg-white p-4 rounded-lg shadow">
+            <ChartsContainer />
+          </div>
 
-        <ChartsContainer />
-
-        <div className="col-span-2">
-          <FinanceChart />
+          {/* Finance Chart */}
+          <div className="bg-white p-4 rounded-lg shadow">
+            <FinanceChart />
+          </div>
         </div>
-      </div>
 
-      <div className="flex-grow p-6 bg-gray-50">
-        <div className="col-span-1">
-          <CalendarComponent />
-        </div>
+        {/* Right Section: Calendar, Events, and Announcements */}
+        <div className="w-1/3 flex flex-col gap-6">
+          {/* Calendar */}
+          <div className="bg-white p-4 rounded-lg shadow">
+            <CalendarComponent />
+          </div>
 
-        <div className="col-span-1">
-          <EventsSection events={eventsData} />
-        </div>
+          {/* Events */}
+          <div className="bg-white p-4 rounded-lg shadow">
+            <EventsSection events={eventsData} />
+          </div>
 
-        <div className="col-span-1">
-          <AnnouncementsSection announcements={announcementsData} />
+          {/* Announcements */}
+          <div className="bg-white p-4 rounded-lg shadow">
+            <AnnouncementsSection announcements={announcementsData} />
+          </div>
         </div>
       </div>
     </div>
