@@ -1,0 +1,27 @@
+.react-calendar {
+  border: none;
+  width: 100%;
+  font-family: Arial, sans-serif;
+  font-size: 1rem;
+}
+
+.react-calendar__tile {
+  text-align: center;
+  padding: 10px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.react-calendar__tile--active {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.react-calendar__tile:hover {
+  background-color: #f0f0f0;
+}
+
+.highlight-sunday {
+  color: red;
+  font-weight: bold;
+}
