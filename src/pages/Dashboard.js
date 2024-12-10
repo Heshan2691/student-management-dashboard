@@ -49,9 +49,6 @@ const Dashboard = () => {
 
   return (
     <div className="flex">
-      {/* Sidebar */}
-      <Sidebar />
-
       {/* Main Content */}
       <div className="flex flex-grow gap-6 p-6 bg-gray-50">
         {/* Left Section: Cards and Charts */}
