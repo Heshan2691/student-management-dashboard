@@ -1,0 +1,41 @@
+.student-profile-container {
+  padding: 20px;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.profile-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.student-details h2,
+.student-details p {
+  margin: 5px 0;
+}
+
+.grades {
+  margin-top: 10px;
+}
+
+.schedule-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.schedule-item {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.announcement-item {
+  margin-bottom: 10px;
+}

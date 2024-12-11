@@ -6,6 +6,8 @@ import Sidebar from "./components/Sidebar";
 import Dashboard from "./pages/Dashboard";
 import TeachersTab from "./components/TeachersTab";
 import TeacherProfile from "./components/TeacherProfile";
+import StudentProfile from "./components/StudentProfile";
+import StudentsTab from "./components/StudentsTab";
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
               <Route path="/" element={<Dashboard />} />
               <Route path="/teachers" element={<TeachersTab />} />
               <Route path="/teacher/:id" element={<TeacherProfile />} />{" "}
+              <Route path="/student/:id" element={<StudentProfile />} />{" "}
+              <Route path="/students" element={<StudentsTab />} />
               {/* Dynamic route */}
             </Routes>
           </div>

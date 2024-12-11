@@ -1,0 +1,38 @@
+.students-tab-container {
+  padding: 20px;
+}
+
+.students-tab-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.students-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.students-table th,
+.students-table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+
+.students-table th {
+  background-color: #f4f4f4;
+}
+
+.students-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.view-profile-link {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.view-profile-link:hover {
+  text-decoration: underline;
+}
