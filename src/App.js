@@ -21,7 +21,7 @@ function App() {
               <Route path="/" element={<Dashboard />} />
               <Route path="/teachers" element={<TeachersTab />} />
               <Route path="/teacher/:id" element={<TeacherProfile />} />{" "}
-              <Route path="/student/:id" element={<StudentProfile />} />{" "}
+              <Route path="/student/:id" element={<StudentProfile />} />
               <Route path="/students" element={<StudentsTab />} />
               {/* Dynamic route */}
             </Routes>

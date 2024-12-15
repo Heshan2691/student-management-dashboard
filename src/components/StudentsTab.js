@@ -1,15 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import api from "../axios"; // Import axios instance or use axios directly
 import "./StudentsTab.css"; // Styling for the table
 
 const StudentsTab = () => {
-  // Sample data for students
-  const students = [
-    { id: 1, name: "Alice Johnson", email: "alice@school.com", class: "3A" },
-    { id: 2, name: "Bob Smith", email: "bob@school.com", class: "4B" },
-    { id: 3, name: "Charlie Brown", email: "charlie@school.com", class: "5C" },
-    // Add more students as needed
-  ];
+  const [students, setStudents] = useState([]); // State to store students data
+  const [loading, setLoading] = useState(true); // Loading state
+  const [error, setError] = useState(null); // Error state
+
+  // Fetch students from the backend
+  useEffect(() => {
+    const fetchStudents = async () => {
+      try {
+        const response = await api.get("/students"); // API call to get all students
+        setStudents(response.data); // Set students data
+        setLoading(false); // Set loading to false
+      } catch (err) {
+        console.error("Error fetching students:", err);
+        setError("Failed to fetch students. Please try again later.");
+        setLoading(false); // Set loading to false
+      }
+    };
+
+    fetchStudents();
+  }, []); // Empty dependency array means this runs once when the component mounts
+
+  // Render loading, error, or the table
+  if (loading) return <p>Loading students...</p>;
+  if (error) return <p>{error}</p>;
 
   return (
     <div className="students-tab-container">
@@ -26,14 +44,16 @@ const StudentsTab = () => {
         </thead>
         <tbody>
           {students.map((student) => (
-            <tr key={student.id}>
-              <td>{student.id}</td>
+            <tr key={student._id}>
+              {" "}
+              {/* Use _id from MongoDB */}
+              <td>{student._id}</td>
               <td>{student.name}</td>
               <td>{student.email}</td>
               <td>{student.class}</td>
               <td>
                 <Link
-                  to={`/student/${student.id}`}
+                  to={`/student/${student._id}`}
                   className="view-profile-link"
                 >
                   View Profile
