@@ -11,9 +11,8 @@ import {
   Legend,
 } from "chart.js";
 import "react-circular-progressbar/dist/styles.css";
-import "./TeacherProfile.css"; // Import the CSS file for styling
+import "./TeacherProfile.css";
 
-// Register Chart.js components
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -24,9 +23,8 @@ ChartJS.register(
 );
 
 const TeacherProfile = () => {
-  const { id } = useParams(); // Get the teacher ID from the URL
+  const { id } = useParams();
 
-  // Sample data for teachers (replace this with actual data)
   const teacherData = {
     1: {
       name: "John Doe",
@@ -144,15 +142,14 @@ const TeacherProfile = () => {
     },
   };
 
-  const teacher = teacherData[id]; // Get the teacher data based on the ID
+  const teacher = teacherData[id];
 
   if (!teacher) {
-    return <div>Teacher not found</div>; // Handle case where teacher doesn't exist
+    return <div>Teacher not found</div>;
   }
 
-  // Data for Bar Chart
   const data = {
-    labels: ["Performance"], // This can be extended to more categories if needed
+    labels: ["Performance"],
     datasets: [
       {
         label: "Teacher Performance",
@@ -179,7 +176,7 @@ const TeacherProfile = () => {
       <div className="profile-header">
         <div className="profile-info">
           <img
-            src="https://via.placeholder.com/150" // Placeholder image, replace with actual teacher image if available
+            src="https://via.placeholder.com/150"
             alt="Teacher"
             className="profile-img"
           />

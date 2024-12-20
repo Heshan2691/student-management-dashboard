@@ -2,43 +2,41 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-import api from "../axios"; // Import axios instance or use axios directly
-import "./StudentProfile.css"; // Create this file or reuse styles from TeacherProfile.css
+import api from "../axios";
+import "./StudentProfile.css";
 
 const StudentProfile = () => {
-  const { id } = useParams(); // Get the student ID from the URL
-  const [student, setStudent] = useState(null); // State for student data
-  const [loading, setLoading] = useState(true); // State for loading
-  const [error, setError] = useState(null); // State for error
+  const { id } = useParams();
+  const [student, setStudent] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  // Fetch student data from the backend
   useEffect(() => {
     const fetchStudent = async () => {
       try {
-        const response = await api.get(`/students/${id}`); // Fetch student by ID
-        setStudent(response.data); // Set student data
-        setLoading(false); // Set loading to false
+        const response = await api.get(`/students/${id}`);
+        setStudent(response.data);
+        setLoading(false);
       } catch (err) {
         console.error("Error fetching student:", err);
         setError("Failed to load student data.");
-        setLoading(false); // Set loading to false
+        setLoading(false);
       }
     };
 
     fetchStudent();
-  }, [id]); // Dependency array ensures the effect runs when `id` changes
+  }, [id]);
 
-  // Handle loading and error states
   if (loading) return <div>Loading student data...</div>;
   if (error) return <div>{error}</div>;
-  if (!student) return <div>Student not found</div>; // Handle case where student doesn't exist
+  if (!student) return <div>Student not found</div>;
 
   return (
     <div className="student-profile-container">
       <div className="profile-header">
         <div className="profile-info">
           <img
-            src="https://via.placeholder.com/150" // Placeholder image, replace with actual student image if available
+            src="https://via.placeholder.com/150"
             alt="Student"
             className="profile-img"
           />

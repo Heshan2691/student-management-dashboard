@@ -1,23 +1,19 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios"; // Import axios to make API requests
+import axios from "axios";
 import InfoCard from "./InfoCard";
 
 const CardsContainer = () => {
-  // State to store the counts
   const [studentCount, setStudentCount] = useState(0);
   const [teacherCount, setTeacherCount] = useState(0);
 
-  // Fetch the counts for students and teachers
   useEffect(() => {
     const fetchCounts = async () => {
       try {
-        // Fetch student count from the backend
         const studentResponse = await axios.get(
           "http://localhost:5000/api/students/count"
         );
         setStudentCount(studentResponse.data.count);
 
-        // Fetch teacher count from the backend
         const teacherResponse = await axios.get(
           "http://localhost:5000/api/teachers/count"
         );

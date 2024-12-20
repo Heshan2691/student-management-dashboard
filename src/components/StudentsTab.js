@@ -27,7 +27,6 @@ const StyledTableHead = styled(TableHead)(({ theme }) => ({
   },
 }));
 
-// Styled Table
 const StyledTable = styled(Table)(({ theme }) => ({
   "& .MuiTableRow-root:hover": {
     backgroundColor: theme.palette.action.hover,
@@ -43,7 +42,6 @@ const StudentsTab = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Fetch students from the backend
   useEffect(() => {
     const fetchStudents = async () => {
       try {

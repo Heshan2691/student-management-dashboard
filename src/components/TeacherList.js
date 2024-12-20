@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 const teachers = [
   { id: 1, name: "Dean Guerrero" },
   { id: 2, name: "Nell Goodman" },
-  // Add more teachers here
 ];
 
 const TeacherList = () => {
