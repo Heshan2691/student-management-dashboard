@@ -12,9 +12,8 @@ import {
   CircularProgress,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import api from "../axios"; // Import axios instance or use axios directly
+import api from "../axios";
 
-// Styled Table Head
 const StyledTableHead = styled(TableHead)(({ theme }) => ({
   "& .MuiTableRow-root": {
     backgroundColor: theme.palette.primary.main,

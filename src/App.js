@@ -13,7 +13,7 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Navbar />
+        {/* <Navbar /> */}
         <div className="flex">
           <Sidebar />
           <div className="flex-grow">
