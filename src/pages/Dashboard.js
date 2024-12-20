@@ -1,5 +1,4 @@
 import React from "react";
-import Sidebar from "../components/Sidebar";
 import CardsContainer from "../components/CardsContainer";
 import ChartsContainer from "../components/ChartsContainer";
 import FinanceChart from "../components/FinanceChart";
@@ -48,41 +47,41 @@ const Dashboard = () => {
   ];
 
   return (
-    <div className="flex">
+    <div className="flex h-screen bg-gray-50">
       {/* Main Content */}
-      <div className="flex flex-grow gap-6 p-6 bg-gray-50">
-        {/* Left Section: Cards and Charts */}
+      <div className="flex flex-grow gap-6 p-6">
+        {/* Left Section */}
         <div className="flex-1 flex flex-col gap-6">
           {/* Cards */}
-          <div className="bg-white p-4 rounded-lg shadow">
+          <div className="bg-white p-4 rounded-lg shadow h-full">
             <CardsContainer />
           </div>
 
           {/* Charts */}
-          <div className="bg-white p-4 rounded-lg shadow">
+          <div className="bg-white p-4 rounded-lg shadow h-full">
             <ChartsContainer />
           </div>
 
           {/* Finance Chart */}
-          <div className="bg-white p-4 rounded-lg shadow">
+          <div className="bg-white p-4 rounded-lg shadow h-full">
             <FinanceChart />
           </div>
         </div>
 
-        {/* Right Section: Calendar, Events, and Announcements */}
+        {/* Right Section */}
         <div className="w-1/3 flex flex-col gap-6">
           {/* Calendar */}
-          <div className="bg-white p-4 rounded-lg shadow">
+          <div className="bg-white p-4 rounded-lg shadow h-full">
             <CalendarComponent />
           </div>
 
           {/* Events */}
-          <div className="bg-white p-4 rounded-lg shadow">
+          <div className="bg-white p-4 rounded-lg shadow h-full">
             <EventsSection events={eventsData} />
           </div>
 
           {/* Announcements */}
-          <div className="bg-white p-4 rounded-lg shadow">
+          <div className="bg-white p-4 rounded-lg shadow h-full">
             <AnnouncementsSection announcements={announcementsData} />
           </div>
         </div>

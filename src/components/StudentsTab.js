@@ -1,69 +1,134 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import {
+  Table,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableBody,
+  Typography,
+  Paper,
+  Box,
+  CircularProgress,
+} from "@mui/material";
+import { styled } from "@mui/material/styles";
 import api from "../axios"; // Import axios instance or use axios directly
-import "./StudentsTab.css"; // Styling for the table
+
+// Styled Table Head
+const StyledTableHead = styled(TableHead)(({ theme }) => ({
+  "& .MuiTableRow-root": {
+    backgroundColor: theme.palette.primary.main,
+  },
+  "& .MuiTableCell-head": {
+    color: theme.palette.common.white,
+    fontWeight: "bold",
+    fontSize: "1rem",
+    textTransform: "uppercase",
+    letterSpacing: "0.5px",
+  },
+}));
+
+// Styled Table
+const StyledTable = styled(Table)(({ theme }) => ({
+  "& .MuiTableRow-root:hover": {
+    backgroundColor: theme.palette.action.hover,
+  },
+  "& .MuiTableCell-body": {
+    fontSize: "0.9rem",
+    padding: theme.spacing(1.5),
+  },
+}));
 
 const StudentsTab = () => {
-  const [students, setStudents] = useState([]); // State to store students data
-  const [loading, setLoading] = useState(true); // Loading state
-  const [error, setError] = useState(null); // Error state
+  const [students, setStudents] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   // Fetch students from the backend
   useEffect(() => {
     const fetchStudents = async () => {
       try {
-        const response = await api.get("/students"); // API call to get all students
-        setStudents(response.data); // Set students data
-        setLoading(false); // Set loading to false
+        const response = await api.get("/students");
+        setStudents(response.data);
+        setLoading(false);
       } catch (err) {
         console.error("Error fetching students:", err);
         setError("Failed to fetch students. Please try again later.");
-        setLoading(false); // Set loading to false
+        setLoading(false);
       }
     };
 
     fetchStudents();
-  }, []); // Empty dependency array means this runs once when the component mounts
+  }, []);
 
-  // Render loading, error, or the table
-  if (loading) return <p>Loading students...</p>;
-  if (error) return <p>{error}</p>;
+  if (loading) {
+    return (
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        minHeight="60vh"
+      >
+        <CircularProgress />
+      </Box>
+    );
+  }
+
+  if (error) {
+    return (
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        minHeight="60vh"
+      >
+        <Typography variant="h6" color="error">
+          {error}
+        </Typography>
+      </Box>
+    );
+  }
 
   return (
-    <div className="students-tab-container">
-      <h2 className="students-tab-title">Students List</h2>
-      <table className="students-table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Class</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
+    <Paper sx={{ padding: 4, margin: 2, borderRadius: 3, boxShadow: 3 }}>
+      <Typography variant="h4" sx={{ marginBottom: 3, color: "primary.main" }}>
+        Students List
+      </Typography>
+
+      <StyledTable>
+        <StyledTableHead>
+          <TableRow>
+            <TableCell>ID</TableCell>
+            <TableCell>Name</TableCell>
+            <TableCell>Email</TableCell>
+            <TableCell>Class</TableCell>
+            <TableCell>Actions</TableCell>
+          </TableRow>
+        </StyledTableHead>
+        <TableBody>
           {students.map((student) => (
-            <tr key={student._id}>
-              {" "}
-              {/* Use _id from MongoDB */}
-              <td>{student._id}</td>
-              <td>{student.name}</td>
-              <td>{student.email}</td>
-              <td>{student.class}</td>
-              <td>
+            <TableRow key={student._id}>
+              <TableCell>{student._id}</TableCell>
+              <TableCell>{student.name}</TableCell>
+              <TableCell>{student.email}</TableCell>
+              <TableCell>{student.class}</TableCell>
+              <TableCell>
                 <Link
                   to={`/student/${student._id}`}
-                  className="view-profile-link"
+                  style={{
+                    color: "#1976d2",
+                    textDecoration: "none",
+                    fontWeight: "500",
+                  }}
                 >
                   View Profile
                 </Link>
-              </td>
-            </tr>
+              </TableCell>
+            </TableRow>
           ))}
-        </tbody>
-      </table>
-    </div>
+        </TableBody>
+      </StyledTable>
+    </Paper>
   );
 };
 
